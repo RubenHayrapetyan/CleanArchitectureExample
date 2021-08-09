@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/course_position_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <ImageView
+        android:id="@+id/course_logo_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/course_header_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_logo_img"
+        tools:text="PHP / PHP7" />
+
+    <Space
+        android:id="@+id/center_space"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/course_header_txt" />
+
+    <Button
+        android:id="@+id/course_videos_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Videos"
+        app:layout_constraintEnd_toStartOf="@id/center_space"
+        app:layout_constraintTop_toBottomOf="@id/course_header_txt" />
+
+    <Button
+        android:id="@+id/course_tests_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Tests"
+        app:layout_constraintStart_toEndOf="@id/center_space"
+        app:layout_constraintTop_toBottomOf="@id/course_header_txt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

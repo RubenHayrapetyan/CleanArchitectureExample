@@ -16,7 +16,7 @@ private class ActivityViewBindingProperty<A : ComponentActivity, T : ViewBinding
     override fun getLifecycleOwner(thisRef: A) = thisRef
 }
 
-public fun <A : ComponentActivity, T : ViewBinding> ComponentActivity.viewBinding(
+fun <A : ComponentActivity, T : ViewBinding> ComponentActivity.viewBinding(
     viewBinder: (A) -> T
 ): ViewBindingProperty<A, T> {
     return ActivityViewBindingProperty(viewBinder)

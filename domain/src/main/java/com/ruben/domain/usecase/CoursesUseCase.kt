@@ -15,12 +15,10 @@ class CoursesUseCase(
 
     override suspend fun getCoursesListResponse(): Result<List<CoursesItemLocal>> {
 
-        val result = coursesListRepository.getCoursesListResponse()
-        return when(result){
+        return when(val result = coursesListRepository.getCoursesListResponse()){
             is Result.Success -> {
               val mappingValue = result.data?.map {
                   it.toDomain()
-
               }
                 if (mappingValue != null) {
                     coursesList = mappingValue

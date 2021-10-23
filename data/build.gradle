@@ -47,10 +47,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomSql"
     kapt "androidx.room:room-compiler:$roomSql"
 
-    implementation "androidx.room:room-rxjava3:2.3.0-beta01"
-    implementation "io.reactivex.rxjava3:rxandroid:$rxJava"
-    implementation "io.reactivex.rxjava3:rxjava:$rxJava"
-    //implementation "com.squareup.retrofit2:adapter-rxjava2:$rxJavaAdapter"
+    
     implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
 }

@@ -7,9 +7,11 @@ import com.ruben.domain.interactors.CoursesListInteractor
 import com.ruben.entities.Result
 import com.ruben.entities.localmodels.courses.CoursesItemLocal
 import com.ruben.cleanarchitectureexample.base.viewmodel.BaseViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CoursesViewModel (
+class CoursesViewModel(
     private val coursesListInteractor: CoursesListInteractor
 ) : BaseViewModel() {
 
@@ -36,22 +38,24 @@ class CoursesViewModel (
 
     fun loadDataDb() {
         viewModelScope.launch {
-            // stex petq IO thread-ov anel
-            coursesListInteractor.getCoursesListFromDb()
-        }
-
-    }
-    fun getAllCourses() {
-        // stex petq IO thread-ov anel
-        _loadingData.value = true
-       val result = coursesListInteractor.getCoursesListResponse()
-
-        when(result){
-            is Result.Success -> {
-                _getCoursesList.value = result.data
+            withContext(Dispatchers.IO) {
+                coursesListInteractor.getCoursesListFromDb()
             }
-            is Result.Error -> {
-                _errorNullData.value = result.errors.errorMessage
+        }
+    }
+
+    fun getAllCourses() {
+        _loadingData.value = true
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                when (val result = coursesListInteractor.getCoursesListResponse()) {
+                    is Result.Success -> {
+                        _getCoursesList.value = result.data
+                    }
+                    is Result.Error -> {
+                        _errorNullData.value = result.errors.errorMessage
+                    }
+                }
             }
         }
         _loadingData.value = false

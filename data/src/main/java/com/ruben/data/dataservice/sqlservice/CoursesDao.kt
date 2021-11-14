@@ -11,11 +11,11 @@ import com.ruben.entities.localmodels.courses.CoursesItemLocal
 interface CoursesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAllCourses(cours: List<CoursesItemLocal>)
+    suspend fun insertAllCourses(cours: List<CoursesItemLocal>)
 
     @Query("DELETE FROM courses")
-    fun deleteAllCourses()
+    suspend fun deleteAllCourses()
 
     @Query("SELECT * FROM courses")
-    fun getAllCourses(): Result<List<CoursesItemLocal>>
+    suspend fun getAllCourses(): Result<List<CoursesItemLocal>>
 }
